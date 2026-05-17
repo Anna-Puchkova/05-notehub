@@ -12,6 +12,7 @@ import SearchBox from "../SearchBox/SearchBox";
 import NoteList from "../NoteList/NoteList";
 import Pagination from "../Pagination/Pagination";
 import Modal from "../Modal/Modal";
+import NoteForm from "../NoteForm/NoteForm";
 
 export default function App() {
   const [page, setPage] = useState(1);
@@ -53,8 +54,11 @@ export default function App() {
       {isLoading && <p>Loading notes...</p>}
       {isError && <p>Error loading notes.</p>}
       {data && <NoteList notes={data.notes} />}
-
-      {isModalOpen && <Modal onClose={closeModal} />}
+      {isModalOpen && (
+        <Modal onClose={closeModal}>
+          <NoteForm onClose={closeModal} />
+        </Modal>
+      )}
     </div>
   );
 }
